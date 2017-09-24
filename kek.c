@@ -46,9 +46,9 @@ node* append(int data, node* tail) {
 // thus whatever assignment you make to it only exists for the duration of function call
 // and is not propagated outside of it. When you return from del_front, the pointer head ceases
 // to exist and any changes aren't copied back.
-void delete_front(node** head) {
+void delete_front(node* head) {
     if (head) {
-        *head = (*head)->next;
+        *head = *(head->next);
     }
 }
 
@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
             case 4:
                 printf("\033[2J\033[1;1H");
                 menu();
-                delete_front(&head);
+                delete_front(head);
                 break;
 
             default:
