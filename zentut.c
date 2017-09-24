@@ -136,6 +136,36 @@ node* remove_back(node* head) {
     return head;
 }
 
+node* remove_any(node* head, node* nd) {
+    if (nd == NULL) {
+        return NULL;
+    }
+
+    if (nd == head) {
+        return remove_front(head);
+    }
+
+    if (nd->next == NULL) {
+        return remove_back(head);
+    }
+
+    // if node in middle
+    node* cursor = head;
+    while(cursor != NULL) {
+        if (cursor->next == nd) {
+            break;
+        }
+        cursor = cursor->next;
+    }
+    if (cursor != NULL) {
+        node* tmp = cursor->next;
+        cursor->next = tmp->next;
+        tmp->next = NULL;
+        free(tmp);
+    }
+    return head;
+}
+
 void display(node* n) {
     if (n != NULL) {
         printf("%d ", n->data);
